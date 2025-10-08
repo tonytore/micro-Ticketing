@@ -4,6 +4,9 @@ import bodyParser from 'body-parser'
 const app = express()
 app.use(bodyParser.json())
 
+app.get('/api/users/currentuser', (req,res)=>{
+    res.send('hi tonytor')
+})
 
 
 app.listen(3000, ()=>{
