@@ -14,8 +14,13 @@
     "@types/mongoose": "^5.11.96",
     "body-parser": "^2.2.0",
     "express": "^4.21.2",
+<<<<<<< HEAD
     "express-validator": "^7.2.1",
     "mongoose": "^8.19.1",
+=======
+    "express-async-errors": "^3.1.1",
+    "express-validator": "^7.2.1",
+>>>>>>> 44c3c01fc629960d438b47ea7e8271a402cb0ea4
     "nodemon": "^3.1.10",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"

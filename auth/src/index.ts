@@ -9,8 +9,8 @@ import { errorHandler } from './middleware/errorHandler'
 
 
 
-const app = express()
-app.use(bodyParser.json())
+const app = express();
+app.use(bodyParser.json());
 
 app.use('/api/users', currentUser)
 app.use('/api/users', signUp)

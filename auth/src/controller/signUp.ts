@@ -1,8 +1,12 @@
-import type { Request, Response, NextFunction } from "express";
-import { validationResult } from 'express-validator'
-import { User } from "../models/user";
+import type { NextFunction, Request, Response } from "express";
+import { validationResult } from "express-validator";
 import { RequestValidationError } from "../error/request-validation-error";
+import { databaseConnectionError } from "../error/databaseConnectionError";
 import { BadRequestError } from "../error/bad-request-error";
+import { User } from "../models/user";
+
+
+
 
 export async function signUp(req:Request,res:Response,next:NextFunction){
     try {
