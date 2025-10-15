@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
 import { RequestValidationError } from "../error/request-validation-error";
-import { databaseConnectionError } from "../error/databaseConnectionError";
 import { BadRequestError } from "../error/bad-request-error";
 import { User } from "../models/user";
+import jwt from "jsonwebtoken";
 
 
 
@@ -26,6 +26,16 @@ export async function signUp(req:Request,res:Response,next:NextFunction){
     const user = User.build({email,password})
     await user.save()
 
+    // Generate JWT
+    const token = jwt.sign({
+      id: user.id,
+      email: user.email
+    }, "secret")
+
+    // STORE IT ON SESSION OBJECT
+    req.session = {
+      jwt: token
+    }
     res.status(200).send({user})
     } catch (err) {
       next(err)
