@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
@@ -9,8 +10,6 @@ import { signOut } from './routes/signout'
 import { errorHandler } from './middleware/errorHandler'
 import { NotFoundError } from './error/not-found'
 import cookieSession from 'cookie-session'
-
-
 
 const app = express();
 app.set('trust proxy', true)
@@ -34,6 +33,9 @@ app.all('*', async (req,res)=>{
 app.use(errorHandler)
 
 const start = async ()=>{
+  if (!process.env.JWT_KEY) {
+    throw new Error('JWT_KEY must be defined')
+  }
   try {
     await mongoose.connect('mongodb+srv://ticket:ticket@cluster0.udwrqzz.mongodb.net/auth')
     console.log('connected to db')

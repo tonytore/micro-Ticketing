@@ -1,6 +1,13 @@
 import type { Request, Response } from "express";
 
+
 export function currentUser(req:Request,res:Response){
-    res.send({})
+
+    try{
+        
+        res.send({currentUser: req.currentUser || null})
+    }catch(err){
+        res.send({currentUser: null})
+    }
 
 }
